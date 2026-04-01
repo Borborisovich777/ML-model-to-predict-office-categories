@@ -1,0 +1,5 @@
+Intro-to-AI-project/
+.venv/
+__pycache__/
+.DS_Store
+.ipynb_checkpoints/
