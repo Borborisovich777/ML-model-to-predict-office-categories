@@ -221,7 +221,7 @@ intro-to-ai-main/
 
 ## License
 
-This project is part of the AI 1010 Competition at Sabaq.
+This project is part of the AI 1010 Competition by Nurtore Arynuruly.
 
 ---
 
