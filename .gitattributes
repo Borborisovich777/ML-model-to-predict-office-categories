@@ -1,0 +1,8 @@
+# Keep generated evidence available while collapsing large diffs in GitHub.
+artifacts/** linguist-generated=true
+artifacts-smoke*/** linguist-generated=true
+verification/logs/** linguist-generated=true
+legacy/submission.csv linguist-generated=true
+
+# Preserve the original Markdown hard line breaks in the archived README.
+legacy/README.md whitespace=-blank-at-eol

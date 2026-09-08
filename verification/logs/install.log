@@ -1,0 +1,36 @@
+Using Python 3.11.15 environment at: work/env/.venv
+WARN Retry attempt #0. Sleeping 1.724471295s before the next attempt
+WARN Retry attempt #0. Sleeping 1.777873417s before the next attempt
+WARN Retry attempt #0. Sleeping 1.211377038s before the next attempt
+WARN Retry attempt #0. Sleeping 1.292072505s before the next attempt
+WARN Retry attempt #0. Sleeping 1.043892553s before the next attempt
+WARN Retry attempt #0. Sleeping 1.549190507s before the next attempt
+WARN Retry attempt #0. Sleeping 1.951210186s before the next attempt
+WARN Retry attempt #0. Sleeping 1.581251592s before the next attempt
+WARN Retry attempt #0. Sleeping 1.844914105s before the next attempt
+WARN Retry attempt #0. Sleeping 1.4894772s before the next attempt
+WARN Retry attempt #1. Sleeping 3.877854189s before the next attempt
+WARN Retry attempt #1. Sleeping 3.154581148s before the next attempt
+WARN Retry attempt #1. Sleeping 3.799782751s before the next attempt
+WARN Retry attempt #1. Sleeping 1.582948908s before the next attempt
+WARN Retry attempt #1. Sleeping 1.612854418s before the next attempt
+WARN Retry attempt #1. Sleeping 1.182361203s before the next attempt
+WARN Retry attempt #1. Sleeping 3.781542845s before the next attempt
+WARN Retry attempt #1. Sleeping 2.295770446s before the next attempt
+WARN Retry attempt #1. Sleeping 3.304763583s before the next attempt
+WARN Retry attempt #1. Sleeping 2.069964852s before the next attempt
+WARN Retry attempt #2. Sleeping 6.866190563s before the next attempt
+WARN Retry attempt #2. Sleeping 4.585183759s before the next attempt
+WARN Retry attempt #2. Sleeping 1.999832189s before the next attempt
+WARN Retry attempt #2. Sleeping 2.985512135s before the next attempt
+WARN Retry attempt #2. Sleeping 7.153842105s before the next attempt
+WARN Retry attempt #2. Sleeping 7.761698508s before the next attempt
+WARN Retry attempt #2. Sleeping 1.218201524s before the next attempt
+WARN Retry attempt #2. Sleeping 3.753342622s before the next attempt
+WARN Retry attempt #2. Sleeping 6.429427965s before the next attempt
+error: Request failed after 3 retries in 5.2s
+  Caused by: Failed to fetch: `https://pypi.org/simple/pandas/`
+  Caused by: error sending request for url (https://pypi.org/simple/pandas/)
+  Caused by: client error (Connect)
+  Caused by: dns error
+  Caused by: failed to lookup address information: nodename nor servname provided, or not known

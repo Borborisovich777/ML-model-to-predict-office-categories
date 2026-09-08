@@ -1,0 +1,11 @@
+Starting CV fold 1/2
+Starting CV fold 2/2
+CV fold 1/2: catboost finished in 0.5s
+CV fold 2/2: catboost finished in 0.5s
+CV fold 1/2: xgboost finished in 0.1s
+CV fold 2/2: xgboost finished in 0.1s
+CV fold 1/2: lightgbm finished in 0.1s
+CV fold 2/2: lightgbm finished in 0.1s
+CV fold 1/2: dummy finished in 0.1s
+CV fold 2/2: dummy finished in 0.1s
+Smoke complete: development subset only; no holdout scores or submission.

@@ -1,0 +1,18 @@
+ M .gitignore
+ M GITHUB_SETUP_AND_RUN.md
+ M README.md
+ M results.md
+?? LEGACY_RESULTS.md
+?? REPAIR_REPORT.md
+?? VERIFICATION.md
+?? artifacts-smoke-parallel/
+?? artifacts-smoke-repeat/
+?? artifacts-smoke/
+?? artifacts/
+?? legacy/
+?? office_ml/
+?? requirements-lock.txt
+?? requirements.txt
+?? tests/
+?? train_evaluate.py
+?? verification/

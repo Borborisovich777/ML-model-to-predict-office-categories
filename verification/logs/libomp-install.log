@@ -1,0 +1,34 @@
+Warning: The following taps are not trusted:
+  osrf/simulation
+
+Homebrew is currently ignoring formulae, casks and commands from these taps because tap trust is required.
+
+Prefer trusting only the specific formulae, casks or commands you need.
+Trust installed formulae from these taps with:
+  brew trust --formula osrf/simulation/gz-cmake3 osrf/simulation/gz-cmake5 osrf/simulation/gz-common7 osrf/simulation/gz-fuel-tools11 osrf/simulation/gz-gui10 osrf/simulation/gz-jetty osrf/simulation/gz-launch9 osrf/simulation/gz-math9 osrf/simulation/gz-msgs12 osrf/simulation/gz-physics9 osrf/simulation/gz-plugin4 osrf/simulation/gz-rendering10 osrf/simulation/gz-sensors10 osrf/simulation/gz-sim10 osrf/simulation/gz-tools2 osrf/simulation/gz-transport15 osrf/simulation/gz-utils4 osrf/simulation/ogre1.9 osrf/simulation/ogre2.3 osrf/simulation/sdformat16
+Trust other specific casks and commands with:
+  brew trust --cask <user>/<tap>/<cask>
+  brew trust --command <user>/<tap>/<command>
+Whole-tap trust is broader and includes all current and future formulae,
+casks and commands from the listed taps. Trust whole taps with:
+  brew trust osrf/simulation
+Untap them with:
+  brew untap osrf/simulation
+For more information, see:
+  https://docs.brew.sh/Tap-Trust
+==> Downloading bottle manifests
+✔︎ Bottle Manifest libomp (23.1.0)
+==> Would install 1 formula:
+libomp
+==> Fetching downloads for: libomp
+✔︎ Bottle libomp (23.1.0)
+==> Pouring libomp--23.1.0.arm64_tahoe.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/libomp/23.1.0: 11 files, 1.8MB
+==> Caveats
+==> libomp
+libomp is keg-only, which means it was not symlinked into /opt/homebrew,
+because it can override GCC headers and result in broken builds.
+
+For compilers to find libomp you may need to set:
+  export LDFLAGS="-L/opt/homebrew/opt/libomp/lib"
+  export CPPFLAGS="-I/opt/homebrew/opt/libomp/include"

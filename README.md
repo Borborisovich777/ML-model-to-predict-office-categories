@@ -1,230 +1,77 @@
-# Office Building Classification - Assignment 3
+# Office building category classification
 
-A machine learning project to classify office buildings into five quality tiers (0-4) based on 79 building characteristics. Final model achieved **86.37% validation accuracy**.
+Reproducible comparison of CatBoost, XGBoost, LightGBM and probability-voting ensembles for the five labels of `OfficeCategory` (0–4). This repaired pipeline supersedes the historical notebook evaluation.
 
-## Project Overview
+## Verified data
 
-**Objective:** Predict office building quality categories using supervised multi-class classification
+`office_train.csv`: 35,000 rows × 80 columns (79 predictors plus target). `office_test.csv`: 15,000 rows × 79 predictors, without labels or a source ID. Class counts: {'0': 6675, '1': 7314, '2': 6906, '3': 7013, '4': 7092}. The classes are approximately balanced, not exactly equal. The repository does not independently establish the provenance or meaning of each quality tier.
 
-**Dataset:**
-- Training: 35,000 office buildings with 79 features
-- Test: 15,000 office buildings
-- Target: OfficeCategory (0-4, balanced distribution)
+## Repaired evaluation
 
-**Final Model:** CatBoost with strategic feature engineering
+Raw labeled rows are split first, stratified 80/20 with seed 42: 28,000 development and 7,000 final holdout. Stratified five-fold CV runs only on development. Every fold creates fresh model/preprocessing pipelines. The same folds are used for every candidate and a stratified DummyClassifier baseline.
 
-## Quick Start
+All 79 raw predictors are retained. Ten deterministic row-local features describe quality × office space, space/plot, space/restroom, space/meeting room, total area, office share, basement share, construction age, renovation age and recent renovation. Dates use YearListed. Undefined ratios/overflows become missing; finite numbers are capped at ±1e15 before fitting. This yields 89 predictors: 46 numeric and 43 categorical. No feature search or feature-effect claims are made.
 
-### Prerequisites
+CatBoost receives native categorical strings (including unseen categories), a distinct missing category token, and numeric medians fitted on its training partition. Its internal categorical statistics see only training labels. XGBoost and LightGBM use training-fitted numeric median imputation and OneHotEncoder(handle_unknown='ignore'); missing categories have a distinct token. All-missing numeric columns fall back to zero. No external target encoding or scaling is used. Literal `NA` strings are retained as categories; empty CSV fields are missing. `clean.csv` is never read.
+
+Prospective independent iteration budgets are CatBoost 300 (depth 6, learning rate .08), XGBoost 240 (depth 5, rate .06), and LightGBM 320 (31 leaves, rate .04). There is no early stopping, parameter search or use of holdout results to choose counts. These are defensible fixed baselines, not claimed optima. Full parameters and one-thread CPU settings are in `office_ml/config.py` and the saved protocol. `--workers` schedules independent folds/refits in separate processes; the default is one. This run used 5 workers. Serial and parallel smoke predictions were verified identical.
+
+Class probabilities are aligned to [0,1,2,3,4]. The historical weighted hypothesis uses `(1.2*p_catboost + p_xgboost + p_lightgbm)/3.2`: 37.5%, 31.25%, 31.25%. Equal voting uses one third each. Prediction is argmax of the averaged probabilities. Voting does not pick a different best model at each batch or iteration. Only these two weight sets are compared using development OOF predictions.
+
+All decisions are persisted in `frozen_selection.json` before each candidate is fitted on complete development and scored once on the holdout. The selected candidate is then refitted on all labeled rows for submission, even if another candidate has higher holdout accuracy.
+
+## Results
+
+Generated from `artifacts/metrics.json` and `submission_metadata.json`.
+
+Selected model: **ensemble_equal**, using highest development OOF accuracy, then macro F1, then candidate order.
+
+| Model | CV accuracy ± SD | CV macro F1 ± SD | CV balanced accuracy ± SD | Holdout accuracy | Holdout macro F1 | Holdout balanced accuracy |
+|---|---:|---:|---:|---:|---:|---:|
+| catboost | 84.43% ± 0.75 | 84.53% ± 0.76 | 84.47% ± 0.75 | 85.17% | 85.24% | 85.22% |
+| xgboost | 83.81% ± 0.76 | 83.89% ± 0.78 | 83.87% ± 0.76 | 84.49% | 84.54% | 84.55% |
+| lightgbm | 84.71% ± 0.85 | 84.80% ± 0.86 | 84.75% ± 0.85 | 85.51% | 85.56% | 85.57% |
+| **ensemble_equal (selected)** | 85.08% ± 0.77 | 85.17% ± 0.78 | 85.12% ± 0.77 | 85.77% | 85.82% | 85.82% |
+| ensemble_weighted | 85.06% ± 0.77 | 85.15% ± 0.78 | 85.10% ± 0.77 | 85.86% | 85.91% | 85.91% |
+| dummy | 19.93% ± 0.72 | 19.90% ± 0.72 | 19.90% ± 0.72 | 19.86% | 19.85% | 19.85% |
+
+CV values summarize five development folds; SD is the sample standard deviation (ddof=1), in percentage points, not a confidence interval. OOF selection scores use all development predictions together. Holdout values are separate, after selection was frozen.
+
+Development OOF: strongest ensemble `ensemble_equal` minus strongest single `lightgbm` = +0.375 percentage points. Holdout: strongest ensemble `ensemble_weighted` minus strongest single `lightgbm` = +0.343 percentage points. The ensemble beats the strongest single model on holdout accuracy. These are descriptive comparisons, not significance tests. The holdout does not change selection.
+
+
+## Exact reproduction
+
+Python 3.11 is tested. Create a virtual environment, install the locked packages, and run from this repository root. On macOS the boosting wheels may require an OpenMP runtime (`libomp`); see `VERIFICATION.md` for this machine's setup.
+
 ```bash
-pip install pandas numpy scikit-learn xgboost lightgbm catboost
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements-lock.txt
+python -m pytest -q
+python train_evaluate.py evaluate --smoke --output-dir artifacts-smoke
+python train_evaluate.py evaluate --output-dir artifacts --workers 5
+python train_evaluate.py submit --output-dir artifacts --id-template legacy/submission.csv --workers 5
+python train_evaluate.py document --output-dir artifacts
+python train_evaluate.py check --output-dir artifacts
 ```
 
-### Run the Pipeline
-```bash
-# The main notebook runs the full pipeline:
-# 1. Data loading and preprocessing
-# 2. Feature engineering (32 new features)
-# 3. Model training and evaluation
-# 4. Submission generation
+Evaluation requires a new empty output directory so prior runs cannot be silently overwritten. If the delivered directories already exist, use new names consistently. A smoke run uses only a fixed 1,000-row development subset and two folds of eight iterations; it never scores the holdout and cannot generate a submission. Re-running full evaluation is reproduction of an already reported split, not a fresh independent test.
 
-jupyter notebook nagibator.ipynb
-```
+## Artifacts
 
-### Output Files
-- `clean.csv` - Preprocessed training data with engineered features
-- `submission.csv` - Final predictions for test set
-- `results.md` - Performance metrics
+`artifacts/metrics.json` includes all CV fold scores, holdout metrics, per-class precision/recall/F1/support, confusion matrices, timing and versions. `model_comparison.csv` contains the numeric comparison; `split_indices.npz`, `development_oof.npz` and `holdout_predictions.npz` make it auditable. The configuration and source/data hashes are recorded before holdout evaluation. `final_model.joblib` contains the fitted full-data winning pipelines; load only trusted local model files.
 
-## Key Results
+![Holdout confusion matrices](artifacts/confusion_matrices.png)
 
-### Model Performance
+New predictions are `artifacts/submission.csv` (15,000 rows). Identifier provenance: existing repository submission template; official competition format unverified. The existing IDs are preserved in order, rather than silently recreated; the original submission is retained. No official competition template was supplied, so submission-format compliance is provisional. Unlabeled predictions supply no test accuracy evidence.
 
-| Metric | Value |
-|--------|-------|
-| Training Accuracy | 90.42% |
-| Validation Accuracy | 86.37% |
-| Test Accuracy | 84.5% |
-| Generalization Gap | 3.92pp |
+## Limitations and historical results
 
-### Per-Category Performance
+The holdout is isolated from all modeling decisions in this repaired execution. However, seed 42 reproduces the old notebook's validation row membership, and the entire dataset informed historical work. This is not a never-before-seen external evaluation. CV was used to choose among candidates and therefore has selection optimism. There is one holdout split, no uncertainty/significance analysis, no labeled external test set and no group/time-aware split. Scores describe these supplied rows; entity independence and deployment generalization are unverified.
 
-| Category | Precision | Recall | F1-Score |
-|----------|-----------|--------|----------|
-| 0 (Lowest) | 0.87 | 0.88 | 0.87 |
-| 1 | 0.79 | 0.80 | 0.79 |
-| 2 (Mid) | 0.82 | 0.83 | 0.82 |
-| 3 | 0.88 | 0.87 | 0.88 |
-| **4 (Highest)** | **0.96** | **0.94** | **0.95** |
+The old 86.37% validation claim, 84.5% test claim, claimed improvements, feature rankings, cleaning counts and previous winner claims are not carried forward as evidence. See `LEGACY_RESULTS.md`. The notebook, report, ZIP, `clean.csv`, old submission and CatBoost logs are preserved as historical material; use `train_evaluate.py` to reproduce the repair.
 
-### Feature Importance (Top 10)
+## Team and attribution
 
-| Rank | Feature | Importance |
-|------|---------|------------|
-| 1 | BuildingGrade | 11.2% |
-| 2 | OfficeSpace | 9.8% |
-| 3 | Quality_Size | 8.7% |
-| 4 | Years_Since_Renovation | 7.2% |
-| 5 | PlotSize | 6.9% |
-| 6 | BuildingCondition | 6.1% |
-| 7 | Space_Per_Restroom | 5.4% |
-| 8 | Recent_Renovation | 4.8% |
-| 9 | Space_Plot_Ratio | 4.3% |
-| 10 | MeetingRooms | 3.9% |
-
-## Methodology
-
-### 1. Data Preprocessing
-- **Missing Values:** Numeric imputed with median, categorical with mode (~12% missing)
-- **Outliers:** Retained 5 premium buildings >500K sq ft as valid data
-- **Data Quality:** Removed 47 duplicates, fixed 3 type errors, corrected 12 impossible values
-
-### 2. Feature Engineering (+8.17pp improvement)
-
-**32 engineered features across 5 categories:**
-
-- **Quality-Size Interactions:** BuildingGrade × OfficeSpace, OfficeSpace², BuildingGrade²
-- **Space Efficiency:** Ratios like Space_Per_Restroom, Space_Plot_Ratio, Space_Per_MeetingRoom
-- **Area Composition:** OfficeSpace%, BasementArea%, ParkingArea% decomposition
-- **Temporal:** Years_Since_Construction, Years_Since_Renovation, Recent_Renovation flag, Age Bins
-- **Interaction Features:** BuildingGrade × Years_Since_Renovation
-
-**Final Feature Set:** 95 features (79 original + 32 engineered, 16 removed for redundancy)
-
-### 3. Categorical Encoding
-Target encoding with Bayesian smoothing (λ=1.0) on 12 categorical features:
-- ZoningClassification, BusinessDistrict, BuildingType, etc.
-- Cross-validation consistency: 0.98 correlation
-- No data leakage detected
-
-### 4. Model Selection
-
-**Models Evaluated:**
-1. Logistic Regression (baseline: 72.3%)
-2. Random Forest (81.2%, high overfitting)
-3. Gradient Boosting (82.7%)
-4. XGBoost (84.2%)
-5. LightGBM (83.9%)
-6. **CatBoost (86.37%) ← WINNER**
-7. Voting Ensemble (85.8%)
-
-**Why CatBoost?**
-- Highest validation accuracy (86.37%)
-- Lowest generalization gap (3.92pp)
-- Native categorical feature support
-- 96% precision on premium buildings (Category 4)
-
-### 5. Hyperparameter Tuning
-
-**CatBoost Final Configuration:**
-```python
-CatBoostClassifier(
-    loss_function='MultiClass',
-    iterations=1000,          # Stopped at 850 (early stopping)
-    depth=10,
-    learning_rate=0.03,
-    l2_leaf_reg=3,            # Regularization
-    border_count=128,
-    eval_metric='Accuracy',
-    early_stopping_rounds=100,
-    random_seed=42
-)
-```
-
-**Overfitting Prevention:**
-- Early stopping (CatBoost: 850/1000, XGBoost: 450/500)
-- L2 regularization (l2_leaf_reg=3)
-- Stochastic boosting (subsample=0.8, colsample_bytree=0.8)
-- Stratified 5-fold cross-validation
-
-## Project Structure
-
-```
-intro-to-ai-main/
-├── README.md                          # This file
-├── ML_Competition_Report.pdf          # Full competition report (5 pages)
-├── nagibator.ipynb                    # Main Jupyter notebook with full pipeline
-├── office_train.csv                   # Training data (35K samples)
-├── office_test.csv                    # Test data (15K samples)
-├── clean.csv                          # Preprocessed training data
-├── submission.csv                     # Final predictions for test set
-├── results.md                         # Model performance metrics
-└── catboost_info/                     # CatBoost training logs
-    ├── catboost_training.json
-    ├── learn_error.tsv
-    ├── test_error.tsv
-    └── time_left.tsv
-```
-
-## Key Insights
-
-1. **Domain Knowledge Matters:** Building industry insights drove feature engineering success (+8.17pp)
-2. **Temporal Features Predictive:** Renovation recency was 4th most important feature
-3. **Feature Interactions Powerful:** Quality × Size interaction captured luxury buildings effectively
-4. **Early Stopping Essential:** Prevented overfitting without sacrificing accuracy
-5. **Balanced Data Advantage:** 20% class distribution enabled stratified splitting and reliable validation
-
-## Performance by Building Category
-
-- **Category 0 (Lowest Tier):** Strong performance (87% precision) - easily identifiable budget buildings
-- **Category 1:** Good but challenging (79% precision) - overlaps with mid-tier characteristics
-- **Category 2 (Mid-Tier):** Balanced performance (82% precision) - moderate variance in features
-- **Category 3:** Strong performance (88% precision) - well-defined quality markers
-- **Category 4 (Premium):** Excellent performance (96% precision) - luxury buildings distinctly characterized
-
-## Accuracy Improvement Progression
-
-| Stage | Accuracy | Change |
-|-------|----------|--------|
-| Baseline (Logistic Regression) | 52.0% | - |
-| + Original Features (79) | 78.2% | +26.2pp |
-| + Interaction Features | 80.1% | +1.9pp |
-| + Ratio Features | 81.8% | +1.7pp |
-| + Temporal Features | 83.4% | +1.6pp |
-| + Area Composition | 84.9% | +1.5pp |
-| **Final Model (CatBoost)** | **86.37%** | **+2.47pp** |
-
-## Files Description
-
-| File | Purpose |
-|------|---------|
-| `nagibator.ipynb` | Complete ML pipeline: preprocessing, feature engineering, model training, evaluation |
-| `ML_Competition_Report.pdf` | 5-page competition report with methodology, results, and analysis |
-| `office_train.csv` | Original training dataset (35,000 samples × 79 features) |
-| `office_test.csv` | Original test dataset (15,000 samples × 79 features) |
-| `clean.csv` | Preprocessed training data with engineered features (35,000 × 95 features) |
-| `submission.csv` | Final predictions for Kaggle (OfficeCategory for 15K test samples) |
-| `results.md` | Model performance metrics and classification report |
-
-## Team
-
-**Nagibator**
-- Shakhnazar Sailaukan (sailaukan)
-- Nurtore Arynuruly (lourinser)
-- Ivan Kanev (vizior)
-
-## References
-
-1. Chen, T., & Guestrin, C. (2016). "XGBoost: A Scalable Tree Boosting System."
-2. Dorogush, A. V., et al. (2018). "CatBoost: gradient boosting with categorical features support."
-3. Ke, G., et al. (2017). "LightGBM: A Fast, Distributed, Gradient Boosting Framework."
-4. Scikit-learn. "Ensemble Methods." Retrieved from sklearn.ensemble.
-5. Kaggle Competitions. "Office Building Classification Challenge." (2025)
-
-## Lessons Learned
-
-✓ **Data Exploration Critical:** Understanding feature distributions revealed missing value patterns (MNAR)  
-✓ **Feature Engineering High ROI:** +8.17pp improvement from 32 well-motivated features  
-✓ **Model Selection Matters:** CatBoost outperformed 6 alternatives through native categorical handling  
-✓ **Regularization Works:** Low generalization gap (3.92pp) despite 90.42% train accuracy  
-✓ **Domain Expertise Valuable:** Building industry knowledge made features interpretable and effective  
-
-## License
-
-This project is part of the AI 1010 Competition by Nurtore Arynuruly.
-
----
-
-**Final Kaggle Leaderboard:** Check team performance at [Kaggle Competition Link]
-
-**Report:** See `ML_Competition_Report.pdf` for detailed methodology, feature engineering analysis, and model comparison.
+The historical README names Shakhnazar Sailaukan (sailaukan), Nurtore Arynuruly (lourinser), and Ivan Kanev (vizior). It does not establish individual implementation boundaries. This repair was prepared with Codex at Nurtore's request; it does not establish that Nurtore alone authored the original models or teammates' work.

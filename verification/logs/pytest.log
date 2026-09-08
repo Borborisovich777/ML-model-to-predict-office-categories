@@ -1,0 +1,31 @@
+...............                                                          [100%]
+=============================== warnings summary ===============================
+tests/test_pipeline.py::test_actual_boosters_are_deterministic_and_probabilities_aligned[catboost]
+  <venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:64: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    prop = Group((name + Suppress("=") + comma_separated(value)) | oneOf(_CONSTANTS))
+
+tests/test_pipeline.py::test_actual_boosters_are_deterministic_and_probabilities_aligned[catboost]
+tests/test_pipeline.py::test_actual_boosters_are_deterministic_and_probabilities_aligned[catboost]
+tests/test_pipeline.py::test_actual_boosters_are_deterministic_and_probabilities_aligned[catboost]
+tests/test_pipeline.py::test_actual_boosters_are_deterministic_and_probabilities_aligned[catboost]
+tests/test_pipeline.py::test_actual_boosters_are_deterministic_and_probabilities_aligned[catboost]
+tests/test_pipeline.py::test_actual_boosters_are_deterministic_and_probabilities_aligned[catboost]
+  <venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+    parse = parser.parseString(pattern)
+
+tests/test_pipeline.py::test_actual_boosters_are_deterministic_and_probabilities_aligned[catboost]
+tests/test_pipeline.py::test_actual_boosters_are_deterministic_and_probabilities_aligned[catboost]
+tests/test_pipeline.py::test_actual_boosters_are_deterministic_and_probabilities_aligned[catboost]
+tests/test_pipeline.py::test_actual_boosters_are_deterministic_and_probabilities_aligned[catboost]
+tests/test_pipeline.py::test_actual_boosters_are_deterministic_and_probabilities_aligned[catboost]
+tests/test_pipeline.py::test_actual_boosters_are_deterministic_and_probabilities_aligned[catboost]
+  <venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+    parser.resetCache()
+
+tests/test_pipeline.py::test_actual_boosters_are_deterministic_and_probabilities_aligned[lightgbm]
+tests/test_pipeline.py::test_actual_boosters_are_deterministic_and_probabilities_aligned[lightgbm]
+  <venv>/lib/python3.11/site-packages/sklearn/utils/validation.py:2739: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+15 passed, 15 warnings in 10.64s

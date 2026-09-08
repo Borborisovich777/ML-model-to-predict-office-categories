@@ -1,0 +1,16 @@
+{
+  "selected_model": "ensemble_equal",
+  "rows": 15000,
+  "test_shape": [
+    15000,
+    79
+  ],
+  "identifier_provenance": "existing repository submission template; official competition format unverified",
+  "test_sha256": "d71303efe4526601702b1fe25b346c71dbb7847128ee704e777ef960946aefd9",
+  "template_sha256": "77e531c8fcd2d8a61bfec582be7b3f7cb4abd05a250df8b4b8e88de1a3328678",
+  "submission_sha256": "261d335cc5609a76e309abecdd0408aa605c342e92da72cb3bdf024c9f7fe16b",
+  "model_sha256": "f18f32edb4bfaa9a379314c3169ff4eea5034a63b347a7ff6c9248579e01ee15",
+  "elapsed_seconds": 735.9048267090111,
+  "workers": 5,
+  "labeled_test_evaluation": false
+}

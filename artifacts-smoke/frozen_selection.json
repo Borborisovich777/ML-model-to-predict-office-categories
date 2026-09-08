@@ -1,0 +1,288 @@
+{
+  "seed": 42,
+  "holdout_size": 0.2,
+  "folds": 2,
+  "classes": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "parameters": {
+    "catboost": {
+      "iterations": 8,
+      "depth": 6,
+      "learning_rate": 0.08,
+      "loss_function": "MultiClass",
+      "l2_leaf_reg": 3,
+      "border_count": 128,
+      "random_seed": 42,
+      "thread_count": 1,
+      "task_type": "CPU",
+      "verbose": false,
+      "allow_writing_files": false
+    },
+    "xgboost": {
+      "n_estimators": 8,
+      "max_depth": 5,
+      "learning_rate": 0.06,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "objective": "multi:softprob",
+      "num_class": 5,
+      "eval_metric": "mlogloss",
+      "random_state": 42,
+      "n_jobs": 1,
+      "tree_method": "hist"
+    },
+    "lightgbm": {
+      "n_estimators": 8,
+      "max_depth": -1,
+      "num_leaves": 31,
+      "learning_rate": 0.04,
+      "subsample": 0.8,
+      "subsample_freq": 1,
+      "colsample_bytree": 0.8,
+      "objective": "multiclass",
+      "num_class": 5,
+      "random_state": 42,
+      "n_jobs": 1,
+      "deterministic": true,
+      "force_col_wise": true,
+      "verbosity": -1
+    },
+    "dummy": {
+      "strategy": "stratified",
+      "random_state": 42
+    }
+  },
+  "weights": {
+    "ensemble_equal": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "ensemble_weighted": [
+      1.2,
+      1.0,
+      1.0
+    ]
+  },
+  "candidate_order": [
+    "catboost",
+    "xgboost",
+    "lightgbm",
+    "ensemble_equal",
+    "ensemble_weighted",
+    "dummy"
+  ],
+  "selection_rule": "highest development OOF accuracy, then macro F1, then candidate order",
+  "preprocessing": "10 row-local engineered features; native CatBoost / median + one-hot",
+  "raw_train_sha256": "98f8cd47420e7a48b0d228749e0dd89b9a8e390600913f3466ad2dd0f6e92d01",
+  "source_sha256": {
+    "office_ml/__init__.py": "83a89e65e90e9fc93808a916404a51d72dd3dd063a631793bf012c3aee2c42a6",
+    "office_ml/config.py": "79598c95e66985a7bb2de5b08051877e3ca3106ef302604aac4b1fc47944f7aa",
+    "office_ml/evaluation.py": "e7eb5f47e29593c11b8de58b72cd4bd7ff5d961e36db96e14bbdf048916f0c76",
+    "office_ml/preprocessing.py": "b55f2b78d7bdc42c8f3473a90b25418c2e8ded3e3eb55d8d34f544ae25e0e7c8",
+    "office_ml/reporting.py": "d5214518d654bb07eb0b6ecfe311d77d6236bbeac0d0f395d41c22d5ed1ca697",
+    "office_ml/train.py": "668c7f04cc90fe77cf2de0a036580c559712254bfb16695fc9d103ffbee058da",
+    "train_evaluate.py": "dc02b85596270856ee310465722f444301f59ba2ea62941f0b8fcb8e2f3ae370",
+    "requirements.txt": "c88b9ac538928a44aa5dfe1b8a74c862cb3e86783cce2f114476e7056ada5cfc",
+    "requirements-lock.txt": "13fd779be776176e570f8ae52955bdf2889b995f0242cfe3cd4f11e788427551"
+  },
+  "versions": {
+    "python": "3.11.15 (main, Mar  3 2026, 00:52:57) [Clang 17.0.0 (clang-1700.6.3.2)]",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "numpy": "2.2.6",
+    "pandas": "2.2.3",
+    "scipy": "1.15.3",
+    "scikit-learn": "1.6.1",
+    "catboost": "1.2.8",
+    "xgboost": "3.0.2",
+    "lightgbm": "4.6.0",
+    "matplotlib": "3.10.3",
+    "joblib": "1.5.1",
+    "pytest": "8.3.5"
+  },
+  "mode": "smoke",
+  "started_at": "2026-09-08T05:20:13.605732+00:00",
+  "selected_model": "ensemble_equal",
+  "cv": {
+    "catboost": {
+      "oof": {
+        "accuracy": 0.584,
+        "macro_f1": 0.5669827746811469,
+        "balanced_accuracy": 0.5834493889748156
+      },
+      "folds": [
+        {
+          "accuracy": 0.568,
+          "macro_f1": 0.5442820231239349,
+          "balanced_accuracy": 0.5666871645726135
+        },
+        {
+          "accuracy": 0.6,
+          "macro_f1": 0.5866820506139131,
+          "balanced_accuracy": 0.6004253047753755
+        }
+      ],
+      "mean": {
+        "accuracy": 0.584,
+        "macro_f1": 0.565482036868924,
+        "balanced_accuracy": 0.5835562346739944
+      },
+      "std": {
+        "accuracy": 0.02262741699796954,
+        "macro_f1": 0.029981346960659596,
+        "balanced_accuracy": 0.02385646772199549
+      }
+    },
+    "xgboost": {
+      "oof": {
+        "accuracy": 0.611,
+        "macro_f1": 0.6066542784389761,
+        "balanced_accuracy": 0.611245853689409
+      },
+      "folds": [
+        {
+          "accuracy": 0.63,
+          "macro_f1": 0.6174000912239577,
+          "balanced_accuracy": 0.6305521203942257
+        },
+        {
+          "accuracy": 0.592,
+          "macro_f1": 0.5962353872901487,
+          "balanced_accuracy": 0.5920836027480298
+        }
+      ],
+      "mean": {
+        "accuracy": 0.611,
+        "macro_f1": 0.6068177392570532,
+        "balanced_accuracy": 0.6113178615711278
+      },
+      "std": {
+        "accuracy": 0.02687005768508883,
+        "macro_f1": 0.014965705673401929,
+        "balanced_accuracy": 0.027201349689819455
+      }
+    },
+    "lightgbm": {
+      "oof": {
+        "accuracy": 0.599,
+        "macro_f1": 0.5945313522919903,
+        "balanced_accuracy": 0.5983510335179758
+      },
+      "folds": [
+        {
+          "accuracy": 0.606,
+          "macro_f1": 0.5961038520195142,
+          "balanced_accuracy": 0.604623847428801
+        },
+        {
+          "accuracy": 0.592,
+          "macro_f1": 0.5892002652240645,
+          "balanced_accuracy": 0.5921592746009294
+        }
+      ],
+      "mean": {
+        "accuracy": 0.599,
+        "macro_f1": 0.5926520586217894,
+        "balanced_accuracy": 0.5983915610148652
+      },
+      "std": {
+        "accuracy": 0.009899494936611674,
+        "macro_f1": 0.004881573037572367,
+        "balanced_accuracy": 0.008813783971181597
+      }
+    },
+    "ensemble_equal": {
+      "oof": {
+        "accuracy": 0.622,
+        "macro_f1": 0.6128650964261942,
+        "balanced_accuracy": 0.6213778805327769
+      },
+      "folds": [
+        {
+          "accuracy": 0.636,
+          "macro_f1": 0.6198435017471118,
+          "balanced_accuracy": 0.634596621129129
+        },
+        {
+          "accuracy": 0.608,
+          "macro_f1": 0.6038822933912622,
+          "balanced_accuracy": 0.608319744729575
+        }
+      ],
+      "mean": {
+        "accuracy": 0.622,
+        "macro_f1": 0.611862897569187,
+        "balanced_accuracy": 0.621458182929352
+      },
+      "std": {
+        "accuracy": 0.019798989873223347,
+        "macro_f1": 0.01128627866435262,
+        "balanced_accuracy": 0.01858055749052539
+      }
+    },
+    "ensemble_weighted": {
+      "oof": {
+        "accuracy": 0.619,
+        "macro_f1": 0.6098897862022925,
+        "balanced_accuracy": 0.6182876979129718
+      },
+      "folds": [
+        {
+          "accuracy": 0.632,
+          "macro_f1": 0.6158368949346393,
+          "balanced_accuracy": 0.630414434894311
+        },
+        {
+          "accuracy": 0.606,
+          "macro_f1": 0.6019652492331314,
+          "balanced_accuracy": 0.606319744729575
+        }
+      ],
+      "mean": {
+        "accuracy": 0.619,
+        "macro_f1": 0.6089010720838854,
+        "balanced_accuracy": 0.618367089811943
+      },
+      "std": {
+        "accuracy": 0.018384776310850254,
+        "macro_f1": 0.009808734741753457,
+        "balanced_accuracy": 0.0170375188060737
+      }
+    },
+    "dummy": {
+      "oof": {
+        "accuracy": 0.204,
+        "macro_f1": 0.2038697663670183,
+        "balanced_accuracy": 0.20451638748656573
+      },
+      "folds": [
+        {
+          "accuracy": 0.194,
+          "macro_f1": 0.19393396985847602,
+          "balanced_accuracy": 0.19477682757558917
+        },
+        {
+          "accuracy": 0.214,
+          "macro_f1": 0.21380763040305545,
+          "balanced_accuracy": 0.21439950831817875
+        }
+      ],
+      "mean": {
+        "accuracy": 0.20400000000000001,
+        "macro_f1": 0.20387080013076575,
+        "balanced_accuracy": 0.20458816794688395
+      },
+      "std": {
+        "accuracy": 0.014142135623730944,
+        "macro_f1": 0.014052800138071645,
+        "balanced_accuracy": 0.013875330618143767
+      }
+    }
+  },
+  "frozen_before_holdout_at": "2026-09-08T05:20:14.809575+00:00"
+}
