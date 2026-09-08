@@ -3,3 +3,5 @@ Intro-to-AI-project/
 __pycache__/
 .DS_Store
 .ipynb_checkpoints/
+.pytest_cache/
+.mplconfig/

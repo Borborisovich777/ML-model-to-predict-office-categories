@@ -1,0 +1,68 @@
+Starting CV fold 1/5
+Starting CV fold 2/5
+Starting CV fold 3/5
+Starting CV fold 4/5
+Starting CV fold 5/5
+CV fold 5/5: catboost finished in 507.8s
+CV fold 5/5: xgboost finished in 8.1s
+CV fold 5/5: lightgbm finished in 7.7s
+CV fold 5/5: dummy finished in 0.6s
+CV fold 3/5: catboost finished in 526.4s
+CV fold 2/5: catboost finished in 526.7s
+CV fold 1/5: catboost finished in 527.2s
+CV fold 4/5: catboost finished in 530.0s
+CV fold 3/5: xgboost finished in 8.5s
+CV fold 2/5: xgboost finished in 8.5s
+CV fold 1/5: xgboost finished in 8.5s
+CV fold 4/5: xgboost finished in 8.5s
+CV fold 3/5: lightgbm finished in 7.7s
+CV fold 2/5: lightgbm finished in 7.7s
+CV fold 3/5: dummy finished in 0.6s
+CV fold 1/5: lightgbm finished in 7.7s
+CV fold 2/5: dummy finished in 0.6s
+CV fold 1/5: dummy finished in 0.6s
+CV fold 4/5: lightgbm finished in 7.5s
+CV fold 4/5: dummy finished in 0.6s
+Selection frozen: ensemble_equal. Fitting complete development partition.
+Complete-partition refit: dummy finished in 1.1s
+Complete-partition refit: lightgbm finished in 9.0s
+<venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:64: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+  prop = Group((name + Suppress("=") + comma_separated(value)) | oneOf(_CONSTANTS))
+<venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+  parse = parser.parseString(pattern)
+<venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+  parser.resetCache()
+<venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+  parse = parser.parseString(pattern)
+<venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+  parser.resetCache()
+<venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+  parse = parser.parseString(pattern)
+<venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+  parser.resetCache()
+<venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+  parse = parser.parseString(pattern)
+<venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+  parser.resetCache()
+<venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+  parse = parser.parseString(pattern)
+<venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+  parser.resetCache()
+<venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+  parse = parser.parseString(pattern)
+<venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+  parser.resetCache()
+Complete-partition refit: xgboost finished in 10.2s
+Complete-partition refit: catboost finished in 620.3s
+Matplotlib is building the font cache; this may take a moment.
+<venv>/lib/python3.11/site-packages/matplotlib/_mathtext.py:45: PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'
+  ParserElement.enablePackrat()
+In <venv>/lib/python3.11/site-packages/matplotlib/mpl-data/stylelib/classic.mplstyle: 'parseString' deprecated - use 'parse_string'
+In <venv>/lib/python3.11/site-packages/matplotlib/mpl-data/stylelib/classic.mplstyle: 'resetCache' deprecated - use 'reset_cache'
+In <venv>/lib/python3.11/site-packages/matplotlib/mpl-data/stylelib/classic.mplstyle: 'parseString' deprecated - use 'parse_string'
+In <venv>/lib/python3.11/site-packages/matplotlib/mpl-data/stylelib/classic.mplstyle: 'resetCache' deprecated - use 'reset_cache'
+In <venv>/lib/python3.11/site-packages/matplotlib/mpl-data/stylelib/classic.mplstyle: 'parseString' deprecated - use 'parse_string'
+In <venv>/lib/python3.11/site-packages/matplotlib/mpl-data/stylelib/classic.mplstyle: 'resetCache' deprecated - use 'reset_cache'
+In <venv>/lib/python3.11/site-packages/matplotlib/mpl-data/stylelib/classic.mplstyle: 'parseString' deprecated - use 'parse_string'
+In <venv>/lib/python3.11/site-packages/matplotlib/mpl-data/stylelib/classic.mplstyle: 'resetCache' deprecated - use 'reset_cache'
+Full evaluation complete in 1171.2s; winner remains ensemble_equal.

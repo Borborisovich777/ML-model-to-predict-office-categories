@@ -1,0 +1,26 @@
+{
+  "base_commit": "b252465879331b47d043d5985c911ad91ebf25ea",
+  "initial_status": "clean immediately after clone, before requirements/code edits",
+  "system": "macOS-26.6.2-arm64-arm-64bit",
+  "class_counts": {
+    "0": 6675,
+    "1": 7314,
+    "2": 6906,
+    "3": 7013,
+    "4": 7092
+  },
+  "files": {
+    "office_test.csv": "d71303efe4526601702b1fe25b346c71dbb7847128ee704e777ef960946aefd9",
+    "LICENSE": "bb124094e950a96a53a6b751653e9e0ed5bff8fe5bca16e737330b95e3551aef",
+    "intro-to-ai-main.zip": "9f79527d110e204b7e4f5b2d56d527e15903c1bc6abcb45ba4bb8215b8891c1b",
+    "nagibator.ipynb": "f1663bdae4114161f9d1e6d26dec5cd7cba403a3361c25e1a868757fbeef8e12",
+    "clean.csv": "028abc564c032962956667fa6a0a9a28a84f44c41411a2eb918d1c64bc72701a",
+    "office_train.csv": "98f8cd47420e7a48b0d228749e0dd89b9a8e390600913f3466ad2dd0f6e92d01",
+    "submission.csv": "77e531c8fcd2d8a61bfec582be7b3f7cb4abd05a250df8b4b8e88de1a3328678",
+    "README.md": "680615a13f9c3812de6b6292b30ce4bee04f45dbffcbd844fdf0c855e8b64caf",
+    "GITHUB_SETUP_AND_RUN.md": "5d1f120b790e19a63995e5b53d3cb62cfc81782650c1d2fac2a9763dd8c116df",
+    "results.md": "4e49b538b7db80589451ac72aff7988e597c05eec3cb8e3c93bc337aa549363a",
+    ".gitignore": "5a76f5feb02ad2605be8afa7a4a1d0270a03c3f707c38b36961bab7326a002eb",
+    "AI1010_Group_Assignment_3_Report.pdf": "1f270e4a0b6417f15bdfe572614b669f6af44e209a07e1b6771869249affc046"
+  }
+}

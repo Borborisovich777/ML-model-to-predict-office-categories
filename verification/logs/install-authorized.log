@@ -1,0 +1,53 @@
+Using Python 3.11.15 environment at: work/env/.venv
+Resolved 27 packages in 917ms
+Downloading matplotlib (7.7MiB)
+Downloading pillow (4.6MiB)
+Downloading fonttools (2.9MiB)
+Downloading plotly (8.6MiB)
+Downloading pandas (10.8MiB)
+Downloading numpy (5.1MiB)
+Downloading scipy (21.3MiB)
+Downloading scikit-learn (10.6MiB)
+Downloading catboost (26.5MiB)
+Downloading lightgbm (1.5MiB)
+Downloading xgboost (1.9MiB)
+ Downloaded lightgbm
+ Downloaded xgboost
+ Downloaded fonttools
+ Downloaded pillow
+ Downloaded numpy
+ Downloaded matplotlib
+ Downloaded plotly
+ Downloaded scikit-learn
+ Downloaded pandas
+ Downloaded scipy
+ Downloaded catboost
+Prepared 27 packages in 16.85s
+Installed 27 packages in 5.40s
+ + catboost==1.2.8
+ + contourpy==1.3.3
+ + cycler==0.12.1
+ + fonttools==4.64.0
+ + graphviz==0.21
+ + iniconfig==2.3.0
+ + joblib==1.5.1
+ + kiwisolver==1.5.1
+ + lightgbm==4.6.0
+ + matplotlib==3.10.3
+ + narwhals==2.25.0
+ + numpy==2.2.6
+ + packaging==26.3
+ + pandas==2.2.3
+ + pillow==12.3.0
+ + plotly==7.0.0
+ + pluggy==1.6.0
+ + pyparsing==3.3.2
+ + pytest==8.3.5
+ + python-dateutil==2.9.0.post0
+ + pytz==2026.3.post1
+ + scikit-learn==1.6.1
+ + scipy==1.15.3
+ + six==1.17.0
+ + threadpoolctl==3.6.0
+ + tzdata==2026.3
+ + xgboost==3.0.2

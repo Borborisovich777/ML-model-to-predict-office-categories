@@ -1,0 +1,111 @@
+{
+  "seed": 42,
+  "holdout_size": 0.2,
+  "folds": 2,
+  "classes": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "parameters": {
+    "catboost": {
+      "iterations": 8,
+      "depth": 6,
+      "learning_rate": 0.08,
+      "loss_function": "MultiClass",
+      "l2_leaf_reg": 3,
+      "border_count": 128,
+      "random_seed": 42,
+      "thread_count": 1,
+      "task_type": "CPU",
+      "verbose": false,
+      "allow_writing_files": false
+    },
+    "xgboost": {
+      "n_estimators": 8,
+      "max_depth": 5,
+      "learning_rate": 0.06,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "objective": "multi:softprob",
+      "num_class": 5,
+      "eval_metric": "mlogloss",
+      "random_state": 42,
+      "n_jobs": 1,
+      "tree_method": "hist"
+    },
+    "lightgbm": {
+      "n_estimators": 8,
+      "max_depth": -1,
+      "num_leaves": 31,
+      "learning_rate": 0.04,
+      "subsample": 0.8,
+      "subsample_freq": 1,
+      "colsample_bytree": 0.8,
+      "objective": "multiclass",
+      "num_class": 5,
+      "random_state": 42,
+      "n_jobs": 1,
+      "deterministic": true,
+      "force_col_wise": true,
+      "verbosity": -1
+    },
+    "dummy": {
+      "strategy": "stratified",
+      "random_state": 42
+    }
+  },
+  "weights": {
+    "ensemble_equal": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "ensemble_weighted": [
+      1.2,
+      1.0,
+      1.0
+    ]
+  },
+  "candidate_order": [
+    "catboost",
+    "xgboost",
+    "lightgbm",
+    "ensemble_equal",
+    "ensemble_weighted",
+    "dummy"
+  ],
+  "selection_rule": "highest development OOF accuracy, then macro F1, then candidate order",
+  "preprocessing": "10 row-local engineered features; native CatBoost / median + one-hot",
+  "raw_train_sha256": "98f8cd47420e7a48b0d228749e0dd89b9a8e390600913f3466ad2dd0f6e92d01",
+  "source_sha256": {
+    "office_ml/__init__.py": "83a89e65e90e9fc93808a916404a51d72dd3dd063a631793bf012c3aee2c42a6",
+    "office_ml/config.py": "79598c95e66985a7bb2de5b08051877e3ca3106ef302604aac4b1fc47944f7aa",
+    "office_ml/evaluation.py": "e7eb5f47e29593c11b8de58b72cd4bd7ff5d961e36db96e14bbdf048916f0c76",
+    "office_ml/preprocessing.py": "b55f2b78d7bdc42c8f3473a90b25418c2e8ded3e3eb55d8d34f544ae25e0e7c8",
+    "office_ml/reporting.py": "c21c83df6bd921c845f5b62cc0106f690926468bba46ad081390cb9f4e257134",
+    "office_ml/train.py": "88970033e0d95a70217cbcf7747d605f954546c8edd482d59bb6ebbc9bcefa70",
+    "train_evaluate.py": "dc02b85596270856ee310465722f444301f59ba2ea62941f0b8fcb8e2f3ae370",
+    "requirements.txt": "c88b9ac538928a44aa5dfe1b8a74c862cb3e86783cce2f114476e7056ada5cfc",
+    "requirements-lock.txt": "13fd779be776176e570f8ae52955bdf2889b995f0242cfe3cd4f11e788427551"
+  },
+  "versions": {
+    "python": "3.11.15 (main, Mar  3 2026, 00:52:57) [Clang 17.0.0 (clang-1700.6.3.2)]",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "numpy": "2.2.6",
+    "pandas": "2.2.3",
+    "scipy": "1.15.3",
+    "scikit-learn": "1.6.1",
+    "catboost": "1.2.8",
+    "xgboost": "3.0.2",
+    "lightgbm": "4.6.0",
+    "matplotlib": "3.10.3",
+    "joblib": "1.5.1",
+    "pytest": "8.3.5"
+  },
+  "workers": 2,
+  "mode": "smoke",
+  "started_at": "2026-09-08T05:31:32.872098+00:00"
+}

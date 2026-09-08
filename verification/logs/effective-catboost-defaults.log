@@ -1,0 +1,16 @@
+{
+  "boosting_type": "Plain",
+  "leaf_estimation_iterations": 1,
+  "max_ctr_complexity": 1,
+  "simple_ctr": [
+    "Borders:CtrBorderCount=15:CtrBorderType=Uniform:TargetBorderCount=4:TargetBorderType=MinEntropy:Prior=0/1:Prior=0.5/1:Prior=1/1",
+    "Counter:CtrBorderCount=15:CtrBorderType=Uniform:Prior=0/1"
+  ],
+  "combinations_ctr": [
+    "Borders:CtrBorderCount=15:CtrBorderType=Uniform:TargetBorderCount=4:TargetBorderType=MinEntropy:Prior=0/1:Prior=0.5/1:Prior=1/1",
+    "Counter:CtrBorderCount=15:CtrBorderType=Uniform:Prior=0/1"
+  ],
+  "one_hot_max_size": 2,
+  "depth": 6,
+  "iterations": 8
+}

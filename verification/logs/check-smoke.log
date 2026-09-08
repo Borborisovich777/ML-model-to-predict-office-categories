@@ -1,0 +1,2 @@
+PASS: identical smoke probabilities, folds, scores and selection; no holdout evaluation.
+PASS: parallel smoke results also match exactly.

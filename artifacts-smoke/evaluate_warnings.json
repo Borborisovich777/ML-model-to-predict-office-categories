@@ -1,0 +1,80 @@
+[
+  {
+    "message": "'oneOf' deprecated - use 'one_of'",
+    "category": "PyparsingDeprecationWarning",
+    "filename": "<venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py",
+    "lineno": 64
+  },
+  {
+    "message": "'parseString' deprecated - use 'parse_string'",
+    "category": "PyparsingDeprecationWarning",
+    "filename": "<venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py",
+    "lineno": 85
+  },
+  {
+    "message": "'resetCache' deprecated - use 'reset_cache'",
+    "category": "PyparsingDeprecationWarning",
+    "filename": "<venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py",
+    "lineno": 89
+  },
+  {
+    "message": "'parseString' deprecated - use 'parse_string'",
+    "category": "PyparsingDeprecationWarning",
+    "filename": "<venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py",
+    "lineno": 85
+  },
+  {
+    "message": "'resetCache' deprecated - use 'reset_cache'",
+    "category": "PyparsingDeprecationWarning",
+    "filename": "<venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py",
+    "lineno": 89
+  },
+  {
+    "message": "'parseString' deprecated - use 'parse_string'",
+    "category": "PyparsingDeprecationWarning",
+    "filename": "<venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py",
+    "lineno": 85
+  },
+  {
+    "message": "'resetCache' deprecated - use 'reset_cache'",
+    "category": "PyparsingDeprecationWarning",
+    "filename": "<venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py",
+    "lineno": 89
+  },
+  {
+    "message": "'parseString' deprecated - use 'parse_string'",
+    "category": "PyparsingDeprecationWarning",
+    "filename": "<venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py",
+    "lineno": 85
+  },
+  {
+    "message": "'resetCache' deprecated - use 'reset_cache'",
+    "category": "PyparsingDeprecationWarning",
+    "filename": "<venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py",
+    "lineno": 89
+  },
+  {
+    "message": "'parseString' deprecated - use 'parse_string'",
+    "category": "PyparsingDeprecationWarning",
+    "filename": "<venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py",
+    "lineno": 85
+  },
+  {
+    "message": "'resetCache' deprecated - use 'reset_cache'",
+    "category": "PyparsingDeprecationWarning",
+    "filename": "<venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py",
+    "lineno": 89
+  },
+  {
+    "message": "'parseString' deprecated - use 'parse_string'",
+    "category": "PyparsingDeprecationWarning",
+    "filename": "<venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py",
+    "lineno": 85
+  },
+  {
+    "message": "'resetCache' deprecated - use 'reset_cache'",
+    "category": "PyparsingDeprecationWarning",
+    "filename": "<venv>/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py",
+    "lineno": 89
+  }
+]

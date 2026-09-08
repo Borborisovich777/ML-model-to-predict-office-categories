@@ -1,0 +1,1 @@
+PASS: two separate CLI smoke runs have identical CV scores, selected candidate, split/fold rows, labels and every OOF probability; neither evaluated holdout.

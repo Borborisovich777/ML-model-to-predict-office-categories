@@ -1,0 +1,9 @@
+0:	learn: 1.5040701	total: 791ms	remaining: 5.54s
+1:	learn: 1.4171470	total: 1.5s	remaining: 4.49s
+2:	learn: 1.3451581	total: 2.28s	remaining: 3.81s
+3:	learn: 1.2848951	total: 3.18s	remaining: 3.18s
+4:	learn: 1.2343522	total: 3.87s	remaining: 2.32s
+5:	learn: 1.1868610	total: 4.52s	remaining: 1.5s
+6:	learn: 1.1458796	total: 5.28s	remaining: 754ms
+7:	learn: 1.1120003	total: 6.06s	remaining: 0us
+Runtime-only probe: 8 iterations on first development training fold: 6.335256958962418 seconds

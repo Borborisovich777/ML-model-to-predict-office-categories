@@ -1,0 +1,1 @@
+PASS: serial and spawned-process smoke runs have identical scores, selected model, folds and every OOF probability.
